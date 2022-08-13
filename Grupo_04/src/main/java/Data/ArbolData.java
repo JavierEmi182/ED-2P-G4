@@ -102,6 +102,18 @@ public class ArbolData {
         return tabla;
     }
     
+    public static String arbolPorNivelString(BinaryTree<String> arbolPreguntas, ArrayList<String> orden,ArrayList<String> respuestas){
+        String resp="";
+        Map<Integer,ArrayList<String>> tabla=arbolPorNivel(arbolPreguntas,orden,respuestas);
+        
+        for(int i=0;i<tabla.keySet().size()-1;i++){
+            resp+="Nivel: "+String.valueOf(i)+" "+tabla.get(i)+" \n";
+        }
+        resp+="Nivel "+String.valueOf(tabla.keySet().size())+" (respuestas): "+tabla.get(tabla.keySet().size())+" \n";
+        
+        return resp;
+    }
+    
     public static BinaryTree<String> enlazarRespuestas(BinaryTree<String> preguntas,ArrayList<String> respuestas){
         BinaryTree<String> arbol=preguntas;
         BinaryTree<String> navegar=preguntas;

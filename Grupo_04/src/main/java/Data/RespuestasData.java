@@ -20,7 +20,7 @@ import java.util.ArrayList;
  */
 public class RespuestasData {
     
-    public static ArrayList<String>leerRespuestas(String ruta) throws IOException {
+    public static ArrayList<String> leerRespuestas(String ruta) throws IOException {
         ArrayList<String> respuestas = new ArrayList<>();
         //Usamos la clase BufferedReader para leer archivos de texto
         try (InputStream input = new URL("file:" + ruta).openStream();

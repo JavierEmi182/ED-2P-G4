@@ -38,23 +38,31 @@
             </Label>
             <VBox prefHeight="335.0" prefWidth="139.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Label prefHeight="17.0" prefWidth="157.0" text="Numero de lineas: ">
+                  <Label prefHeight="17.0" prefWidth="157.0" text="Numero de preguntas: ">
                      <font>
                         <Font name="Bodoni MT" size="14.0" />
                      </font></Label>
                   <Label fx:id="lbNumPreguntas" prefHeight="27.0" prefWidth="58.0" />
-                  <Button fx:id="btnCargarTexto" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#cargarTexto" prefHeight="27.0" prefWidth="131.0" text="Cargar texto">
+                  <Button fx:id="btnBuscarRespuestas" mnemonicParsing="false" prefHeight="34.0" prefWidth="133.0" text="Cargar Respuestas">
                      <VBox.margin>
                         <Insets left="50.0" right="30.0" top="10.0" />
                      </VBox.margin>
+                  </Button>
+                  <Label prefHeight="17.0" prefWidth="171.0" text="Número de respuestas:" />
+                  <Label fx:id="lbNumResp" prefHeight="17.0" prefWidth="148.0" />
+                  <Button fx:id="btnCargarTexto" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#cargarTexto" prefHeight="35.0" prefWidth="131.0" text="Cargar texto">
                      <font>
                         <Font name="Bodoni MT" size="14.0" />
-                     </font></Button>
+                     </font>
+                     <VBox.margin>
+                        <Insets left="50.0" right="30.0" top="20.0" />
+                     </VBox.margin>
+                  </Button>
                </children>
             </VBox>
             <HBox prefHeight="62.0" prefWidth="356.0">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#volver" text="Volver" textAlignment="CENTER">
+                  <Button fx:id="btnVolver" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#volver" text="Volver" textAlignment="CENTER">
                      <HBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </HBox.margin>
@@ -64,7 +72,7 @@
                   </Button>
                </children>
             </HBox>
-            <Label prefHeight="17.0" prefWidth="255.0" text="Buscar texto:">
+            <Label prefHeight="17.0" prefWidth="327.0" text="Buscar texto preguntas:">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>

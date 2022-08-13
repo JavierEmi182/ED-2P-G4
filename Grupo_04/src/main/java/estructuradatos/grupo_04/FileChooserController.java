@@ -5,9 +5,16 @@
  */
 package estructuradatos.grupo_04;
 
+import static Data.ArbolData.*;
+import static Data.PreguntasData.leerPreguntas;
+import static Data.RespuestasData.leerRespuestas;
+import TDAs.BinaryTree;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -34,13 +41,27 @@ public class FileChooserController implements Initializable {
     
     ///
     private File fileSeleccionado;
-    private String rutaAnterior;
+    private String rutaPreguntas;
+    private String rutaRespuestas;
     @FXML
     private Label lbNumPreguntas;
     @FXML
     private Button btnCargarTexto;
     @FXML
     private Label lbDescripcion;
+    @FXML
+    private Button btnBuscarRespuestas;
+    @FXML
+    private Label lbNumResp;
+    @FXML
+    private Button btnVolver;
+    
+    public static ArrayList<String> preguntas;
+    public static ArrayList<String> respuestas;
+    public static String nomPreguntas;
+    public static String nomRespuestas;
+    
+    //public static BinaryTree<String> arbolFinal;
 
     /**
      * Initializes the controller class.
@@ -52,35 +73,87 @@ public class FileChooserController implements Initializable {
         // TODO
         btnBuscar.setOnAction(event -> {
             FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Buscar Imagen");
+            fileChooser.setTitle("Buscar Texto preguntas");
 
             // Agregar filtros para facilitar la busqueda
             fileChooser.getExtensionFilters().addAll(
-                    new FileChooser.ExtensionFilter("All Images", "*.*"),
+                   /* new FileChooser.ExtensionFilter("All files", "*.*"),
                     new FileChooser.ExtensionFilter("JPG", "*.jpg"),
-                    new FileChooser.ExtensionFilter("PNG", "*.png")
+                    new FileChooser.ExtensionFilter("PNG", "*.png")*/
+                    new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt")
             );
 
             // Obtener la imagen seleccionada
-            File imgFile = fileChooser.showOpenDialog(null);
-            fileSeleccionado = imgFile;
+            File txtFile = fileChooser.showOpenDialog(null);
+            fileSeleccionado = txtFile;
 
             // Mostar la imagen
-            if (imgFile != null) {
-                Image image = new Image("file:" + imgFile.getAbsolutePath());
-                ivImagen.setImage(image);
-                rutaAnterior = imgFile.getAbsolutePath();
+            if (txtFile != null) {
+                //Image image = new Image("file:" + imgFile.getAbsolutePath());
+                //ivImagen.setImage(image);
+                
+                rutaPreguntas = txtFile.getAbsolutePath();
+                try {
+                    preguntas=leerPreguntas(rutaPreguntas);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                
+                lbNumPreguntas.setText(String.valueOf(preguntas.size())+" preguntas");
+            }
+        });
+        
+        btnBuscarRespuestas.setOnAction(event -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Buscar Texto respuestas");
+
+            // Agregar filtros para facilitar la busqueda
+            fileChooser.getExtensionFilters().addAll(
+                   /* new FileChooser.ExtensionFilter("All files", "*.*"),
+                    new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                    new FileChooser.ExtensionFilter("PNG", "*.png")*/
+                    new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt")
+            );
+
+            // Obtener la imagen seleccionada
+            File txtFile = fileChooser.showOpenDialog(null);
+            fileSeleccionado = txtFile;
+
+            // Mostar la imagen
+            if (txtFile != null) {
+                //Image image = new Image("file:" + imgFile.getAbsolutePath());
+                //ivImagen.setImage(image);
+                
+                rutaRespuestas = txtFile.getAbsolutePath();
+                try {
+                    respuestas=leerRespuestas(rutaRespuestas);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                
+                lbNumResp.setText(String.valueOf(respuestas.size())+" respuestas");
             }
         });
     }    
 
 
     @FXML
-    private void volver(ActionEvent event) {
+    private void volver(ActionEvent event) throws IOException {
+        App.setRoot("primary");
     }
 
     @FXML
-    private void cargarTexto(ActionEvent event) {
+    private void cargarTexto(ActionEvent event) throws IOException {
+        BinaryTree<String> arbolPreguntas=enlazarArbolesPreguntas(preguntas);
+        lbDescripcion.setText(arbolPorNivelString(arbolPreguntas,preguntas,respuestas));
+        PrimaryController.arbolFinal=enlazarRespuestas(arbolPreguntas,respuestas);
+        PrimaryController.filePredeterminado=false;
+        String[] direccionPreg = rutaPreguntas.split(Pattern.quote(File.separator));
+        String[] direccionResp = rutaRespuestas.split(Pattern.quote(File.separator));
+        nomPreguntas=direccionPreg[direccionPreg.length];
+        nomRespuestas=direccionResp[direccionResp.length];
+        //regresar a la ventana anterior
+        App.setRoot("primary");
     }
     
 }
