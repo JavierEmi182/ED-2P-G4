@@ -119,13 +119,17 @@ public class BinaryTree<E> {
                 this.getLeft().listaHojas();
             }else{
                 //cuando este en hoja entro aqui
-                hojas.add(this.getRootContent());
+                if(this.getLeft().getRootContent()==null&&this.getRight().getRootContent()==null){
+                    hojas.add(this.getRootContent());
+                }
             }
             //compruebo derecha
             if(this.getRight().getRootContent()!=null){
                 this.getRight().listaHojas();
             }else{
-                hojas.add(this.getRootContent());
+                if(this.getLeft().getRootContent()==null&&this.getRight().getRootContent()==null){
+                    hojas.add(this.getRootContent());
+                }
             }
         }
         

@@ -34,10 +34,12 @@ public class PrimaryController implements Initializable {
             System.out.println("bandera true");
             lbPreguntastxt.setText("");
             lbRespuestastxt.setText("");
+            primaryButton.setVisible(false);
         }else{
             System.out.println("bandera false");
             lbPreguntastxt.setText(FileChooserController.nomPreguntas);
             lbRespuestastxt.setText(FileChooserController.nomRespuestas);
+            primaryButton.setVisible(true);
         }
     }
     
