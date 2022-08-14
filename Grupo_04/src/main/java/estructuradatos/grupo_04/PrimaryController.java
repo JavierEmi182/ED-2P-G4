@@ -6,10 +6,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-public class PrimaryController {
+public class PrimaryController implements Initializable {
 
     @FXML
     private Label lbPreguntastxt;
@@ -18,18 +19,23 @@ public class PrimaryController {
     @FXML
     private Button btnCargarPreguntas;
     @FXML
-    private Button btnCargarRespuestas;
-    @FXML
     private Button primaryButton;
     
     public static BinaryTree<String> arbolFinal;
     public static boolean filePredeterminado=true;
-
+    
+    /**
+     * Initializes the controller class.
+     */
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
+        System.out.println("Entre initialize");
         if(filePredeterminado){
-        lbPreguntastxt.setText("preguntas.txt");
-        lbRespuestastxt.setText("preguntas.txt");
+            System.out.println("bandera true");
+            lbPreguntastxt.setText("");
+            lbRespuestastxt.setText("");
         }else{
+            System.out.println("bandera false");
             lbPreguntastxt.setText(FileChooserController.nomPreguntas);
             lbRespuestastxt.setText(FileChooserController.nomRespuestas);
         }
@@ -45,7 +51,4 @@ public class PrimaryController {
         App.setRoot("FileChooser");
     }
 
-    @FXML
-    private void fileChooserRespuestas(ActionEvent event) {
-    }
 }

@@ -101,6 +101,17 @@ public class ArbolData {
         
         return tabla;
     }
+    //metodo mostrar por nivel solo preguntas
+    public static String arbolPorNivelPreguntasString(BinaryTree<String> arbolPreguntas, ArrayList<String> orden){
+        String resp="";
+        Map<Integer,ArrayList<String>> tabla=arbolPorNivel(arbolPreguntas,orden,null);
+        
+        for(int i=0;i<tabla.keySet().size()-1;i++){
+            resp+="Nivel: "+String.valueOf(i)+" "+tabla.get(i)+" \n";
+        }
+        
+        return resp;
+    }
     
     public static String arbolPorNivelString(BinaryTree<String> arbolPreguntas, ArrayList<String> orden,ArrayList<String> respuestas){
         String resp="";
@@ -109,8 +120,9 @@ public class ArbolData {
         for(int i=0;i<tabla.keySet().size()-1;i++){
             resp+="Nivel: "+String.valueOf(i)+" "+tabla.get(i)+" \n";
         }
-        resp+="Nivel "+String.valueOf(tabla.keySet().size())+" (respuestas): "+tabla.get(tabla.keySet().size())+" \n";
-        
+        resp+="Nivel "+String.valueOf(tabla.keySet().size()-1)+" (respuestas): "+tabla.get(tabla.keySet().size()-1)+" \n";
+        //System.out.println("tabla: "+tabla.keySet());
+        //System.out.println("size: "+tabla.keySet().size());
         return resp;
     }
     

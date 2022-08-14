@@ -60,6 +60,8 @@ public class FileChooserController implements Initializable {
     public static ArrayList<String> respuestas;
     public static String nomPreguntas;
     public static String nomRespuestas;
+    @FXML
+    private Label lbTextoNumResp;
     
     //public static BinaryTree<String> arbolFinal;
 
@@ -69,7 +71,13 @@ public class FileChooserController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        //root.autosize();
+        
         lbMensajeError.setText("");
+        lbTextoNumResp.setVisible(false);
+        lbNumResp.setVisible(false);
+        btnBuscarRespuestas.setVisible(false);
+        btnCargarTexto.setVisible(false);
         // TODO
         btnBuscar.setOnAction(event -> {
             FileChooser fileChooser = new FileChooser();
@@ -100,6 +108,12 @@ public class FileChooserController implements Initializable {
                 }
                 
                 lbNumPreguntas.setText(String.valueOf(preguntas.size())+" preguntas");
+                BinaryTree<String> arbolPreguntas=enlazarArbolesPreguntas(preguntas);
+                lbDescripcion.setText(arbolPorNivelPreguntasString(arbolPreguntas,preguntas));
+                
+                
+                btnBuscarRespuestas.setVisible(true);
+                
             }
         });
         
@@ -131,7 +145,13 @@ public class FileChooserController implements Initializable {
                     ex.printStackTrace();
                 }
                 
+                lbTextoNumResp.setVisible(true);
+                lbNumResp.setVisible(true);
                 lbNumResp.setText(String.valueOf(respuestas.size())+" respuestas");
+                BinaryTree<String> arbolPreguntas=enlazarArbolesPreguntas(preguntas);
+                //System.out.println(respuestas);
+                lbDescripcion.setText(arbolPorNivelString(arbolPreguntas,preguntas,respuestas));
+                btnCargarTexto.setVisible(true);
             }
         });
     }    
@@ -145,13 +165,15 @@ public class FileChooserController implements Initializable {
     @FXML
     private void cargarTexto(ActionEvent event) throws IOException {
         BinaryTree<String> arbolPreguntas=enlazarArbolesPreguntas(preguntas);
-        lbDescripcion.setText(arbolPorNivelString(arbolPreguntas,preguntas,respuestas));
+        //lbDescripcion.setText(arbolPorNivelString(arbolPreguntas,preguntas,respuestas));
         PrimaryController.arbolFinal=enlazarRespuestas(arbolPreguntas,respuestas);
         PrimaryController.filePredeterminado=false;
         String[] direccionPreg = rutaPreguntas.split(Pattern.quote(File.separator));
         String[] direccionResp = rutaRespuestas.split(Pattern.quote(File.separator));
-        nomPreguntas=direccionPreg[direccionPreg.length];
-        nomRespuestas=direccionResp[direccionResp.length];
+        nomPreguntas=direccionPreg[direccionPreg.length-1];
+        nomRespuestas=direccionResp[direccionResp.length-1];
+        //PrimaryController.lbPreguntastxt.setText(nomPreguntas);
+        //PrimaryController.lbRespuestastxt.setText(nomRespuestas);
         //regresar a la ventana anterior
         App.setRoot("primary");
     }
