@@ -108,26 +108,56 @@ public class BinaryTree<E> {
     
     //METODOS AGREGADOS
     //devuelve las hojas desde el arbol o subarbol actual
-    public LinkedList<E> listaHojas(){//REVISAR CONDICIONES
+    //implementacion hojas javier
+//    public LinkedList<E> listaHojas(){//REVISAR CONDICIONES
+//        LinkedList<E> hojas = new LinkedList<>();
+//        if(this.getRootContent()==null){
+//            //lista vacia
+//            return hojas;
+//        }else{
+//            //compruebo izquierda
+//            if(this.getLeft().getRootContent()!=null){
+//                this.getLeft().listaHojas();
+//            }else{
+//                //cuando este en hoja entro aqui
+//                if(this.getLeft().getRootContent()==null&&this.getRight().getRootContent()==null){
+//                    hojas.add(this.getRootContent());
+//                }
+//            }
+//            //compruebo derecha
+//            if(this.getRight().getRootContent()!=null){
+//                this.getRight().listaHojas();
+//            }else{
+//                if(this.getLeft().getRootContent()==null&&this.getRight().getRootContent()==null){
+//                    hojas.add(this.getRootContent());
+//                }
+//            }
+//        }
+//        
+//        
+//        return hojas;
+//    }
+    
+        public LinkedList<E> listaHojas(){//REVISAR CONDICIONES
         LinkedList<E> hojas = new LinkedList<>();
         if(this.getRootContent()==null){
             //lista vacia
             return hojas;
         }else{
             //compruebo izquierda
-            if(this.getLeft().getRootContent()!=null){
+            if(this.getLeft()!=null){
                 this.getLeft().listaHojas();
             }else{
                 //cuando este en hoja entro aqui
-                if(this.getLeft().getRootContent()==null&&this.getRight().getRootContent()==null){
+                if(this.getLeft()==null&&this.getRight()==null){
                     hojas.add(this.getRootContent());
                 }
             }
             //compruebo derecha
-            if(this.getRight().getRootContent()!=null){
+            if(this.getRight()!=null){
                 this.getRight().listaHojas();
             }else{
-                if(this.getLeft().getRootContent()==null&&this.getRight().getRootContent()==null){
+                if(this.getLeft()==null&&this.getRight()==null){
                     hojas.add(this.getRootContent());
                 }
             }
