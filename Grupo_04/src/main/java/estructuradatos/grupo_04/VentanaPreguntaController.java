@@ -39,7 +39,7 @@ public class VentanaPreguntaController implements Initializable {
     private void botonSi(MouseEvent event) throws IOException {
         String msg = "";
         if (!FileChooserController.preguntas.isEmpty() && !FileChooserController.respuestas.isEmpty()) {
-            App.setRoot("Ventana Random");
+            App.setRoot("VentanaRandom");
         }
         if (FileChooserController.preguntas.isEmpty()) {
             msg = "No se encontraron preguntas en este archivo";
@@ -49,6 +49,12 @@ public class VentanaPreguntaController implements Initializable {
         }
         Alert alert = new Alert(Alert.AlertType.ERROR, msg + "Vuelva a cargar el(los) archivo(s)");
         alert.show();
+        App.setRoot("primary");
+    }
+
+    @FXML
+    private void botonNo(MouseEvent event) throws IOException {
+        App.setRoot("primary");
     }
 
 }
