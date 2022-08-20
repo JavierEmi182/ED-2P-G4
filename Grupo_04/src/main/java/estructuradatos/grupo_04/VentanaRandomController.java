@@ -5,14 +5,17 @@
  */
 package estructuradatos.grupo_04;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -23,9 +26,10 @@ public class VentanaRandomController implements Initializable {
 
     @FXML
     private TextField lblMaximo;
-    public static int nMaximo;
     @FXML
-    private Label lblAnimal;
+    private Button lblPartida;
+    
+    public static int nMaximo;
 
     /**
      * Initializes the controller class.
@@ -33,17 +37,21 @@ public class VentanaRandomController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+
+    }
+
+    @FXML
+    private void iniciarPartida(MouseEvent event) throws IOException {
+
         ArrayList<String> preguntas = FileChooserController.preguntas;
         int nMaximo = Integer.parseInt(lblMaximo.getText());
-        
-        if(nMaximo > preguntas.size()){
-            Alert alert = new Alert(Alert.AlertType.ERROR, "El numero que ingreso esta fuera del limite");
+
+        if(nMaximo > preguntas.size()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "El numero que ingreso esta fuera del limite.\nPuede ingresar un numero hasta "+preguntas.size());
             alert.show();
+        } else{
+             App.setRoot("PreguntasYRespuestas");  
         }
-         
-        lblAnimal.setVisible(false);
-    }    
-    
-    
-    
+    }
+
 }

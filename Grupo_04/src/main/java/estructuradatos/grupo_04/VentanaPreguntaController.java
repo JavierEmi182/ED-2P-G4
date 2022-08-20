@@ -32,21 +32,23 @@ public class VentanaPreguntaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-       /* String msg = "";
+       
+    }    
+
+    @FXML
+    private void botonSi(MouseEvent event) throws IOException {
+        String msg = "";
+        if(!FileChooserController.preguntas.isEmpty()&& !FileChooserController.respuestas.isEmpty()){
+            App.setRoot("Ventana Random");  
+        }
         if(FileChooserController.preguntas.isEmpty()){
             msg = "No se encontraron preguntas en este archivo";
         }
         if(FileChooserController.respuestas.isEmpty()){
             msg = msg + "Este archivo se encuentra vacio.";
-        }
-        
+        } 
         Alert alert = new Alert(Alert.AlertType.ERROR, msg + "Vuelva a cargar el(los) archivo(s)");
-        alert.show();*/
-    }    
-
-    @FXML
-    private void botonSi(MouseEvent event) throws IOException {
-        App.setRoot("Ventana Random");  
+        alert.show();        
     }
     
     
