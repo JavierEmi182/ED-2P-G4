@@ -31,9 +31,9 @@ public class PreguntasYRespuestasController implements Initializable {
 
     @FXML
     private TextArea preguntas;
-    private  BinaryTree<String> arbol= PrimaryController.arbolFinal;
-    private int PreguntasHechas=0;
-    private int PreguntasUsuario=VentanaRandomController.nMaximo;
+    private BinaryTree<String> arbol = PrimaryController.arbolFinal;
+    private int PreguntasHechas = 0;
+    private int PreguntasUsuario = VentanaRandomController.nMaximo;
     @FXML
     private Button RespuestaSi;
     @FXML
@@ -44,16 +44,24 @@ public class PreguntasYRespuestasController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        preguntar();
+        if (PreguntasHechas != PreguntasUsuario) {
+            preguntar();
+        } else {
+            preguntas.setText("No puedo adivinar el animal.");
+            RespuestaSi.setVisible(false);
+            RespuestaSi.setDisable(true);
+            RespuestaNo.setVisible(false);
+            RespuestaNo.setDisable(true);
+        }
 
-    }    
+    }
 
     @FXML
     private void RespuestaSi(ActionEvent event) {
         respuestaSi();
-        if(PreguntasHechas!=PreguntasUsuario){
+        if (PreguntasHechas != PreguntasUsuario) {
             preguntar();
-        }else{
+        } else {
             darRespuesta(this.arbol);
             RespuestaSi.setVisible(false);
             RespuestaSi.setDisable(true);
@@ -65,72 +73,68 @@ public class PreguntasYRespuestasController implements Initializable {
     @FXML
     private void RespuestaNo(ActionEvent event) {
         respuestaNo();
-        if(PreguntasHechas!=PreguntasUsuario){
+        if (PreguntasHechas != PreguntasUsuario) {
             preguntar();
-        }else{
+        } else {
             darRespuesta(this.arbol);
             RespuestaNo.setVisible(false);
             RespuestaNo.setDisable(true);
             RespuestaSi.setVisible(false);
             RespuestaSi.setDisable(true);
-        }    
+        }
     }
 
     @FXML
     private void RegresarPestania(ActionEvent event) {
-        this.PreguntasHechas=0;
-        this.arbol=null;
+        this.PreguntasHechas = 0;
+        this.arbol = null;
         try {
             App.setRoot("primary");
         } catch (IOException ex) {
             Logger.getLogger(PreguntasYRespuestasController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-   
 
-    private void respuestaSi(){
+    private void respuestaSi() {
         PreguntasHechas++;
-        this.arbol=this.arbol.getLeft();
+        this.arbol = this.arbol.getLeft();
     }
-    
-    
-    private void respuestaNo(){
+
+    private void respuestaNo() {
         PreguntasHechas++;
-        this.arbol=this.arbol.getRight();
+        this.arbol = this.arbol.getRight();
     }
-                
-   private void preguntar(){
-       if(ArbolData.esPregunta(this.arbol.getRootContent())){
-           preguntas.setText(this.arbol.getRootContent());
-       }
-       
+
+    private void preguntar() {
+        if (ArbolData.esPregunta(this.arbol.getRootContent())) {
+            preguntas.setText(this.arbol.getRootContent());
+        }
+
 //       else{
 //           preguntas.setText("Estas pensando en un "+ arbol.getRootContent());
 //       }
-   }
-   
-    private void darRespuesta(BinaryTree<String> guia){
-        if(guia == null){
-           preguntas.setText("Lo sentimos, pero no tenemos un animal que cumpla esa descripcion");
-        }else if (!ArbolData.esPregunta(guia.getRootContent())){
-           preguntas.setText("Estas pensando en un "+ arbol.getRootContent());
-        }else if (ArbolData.esPregunta(guia.getRootContent())){
-            String respuesta="";
-            for(String respuestas : arbol.getHojas()){
-                 respuesta+=respuestas+", ";
+    }
+
+    private void darRespuesta(BinaryTree<String> guia) {
+        if (guia == null) {
+            preguntas.setText("Lo sentimos, pero no tenemos un animal que cumpla esa descripcion");
+        } else if (!ArbolData.esPregunta(guia.getRootContent())) {
+            preguntas.setText("Estas pensando en un " + arbol.getRootContent());
+        } else if (ArbolData.esPregunta(guia.getRootContent())) {
+            String respuesta = "";
+            for (String respuestas : arbol.getHojas()) {
+                respuesta += respuestas + ", ";
             }
-            if(arbol.listaHojas().size()==1){
-                preguntas.setText("Estas pensando en un "+ respuesta);
-            }else{
-                preguntas.setText("Podrias estar pensando en estos animales"+respuesta);
+            if (arbol.listaHojas().size() == 1) {
+                preguntas.setText("Estas pensando en un " + respuesta);
+            } else {
+                preguntas.setText("Podrias estar pensando en estos animales" + respuesta);
             }
         }
     }
-       
-   }
-   
-   
+
+}
+
 //      private void respuestaNo(){
 //        PreguntasHechas++;
 //        this.arbol=this.arbol.getRight();
@@ -147,8 +151,6 @@ public class PreguntasYRespuestasController implements Initializable {
 //            }
 //            preguntas.setText("Podrias estar pensando en estos animales"+respuesta);
 //        }    
-  
-   
 //    private void CambiarPregunta(){ 
 //        int PreguntasHechas=0;
 //        int PreguntasUsuario=2;

@@ -28,7 +28,7 @@ public class VentanaRandomController implements Initializable {
     private TextField lblMaximo;
     @FXML
     private Button lblPartida;
-    
+
     public static int nMaximo;
 
     /**
@@ -46,13 +46,13 @@ public class VentanaRandomController implements Initializable {
         ArrayList<String> preguntas = FileChooserController.preguntas;
         int nMaximo = Integer.parseInt(lblMaximo.getText());
 
-        if(nMaximo > preguntas.size()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "El numero que ingreso esta fuera del limite.\nPuede ingresar un numero hasta "+preguntas.size());
+        if (nMaximo > preguntas.size()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "El numero que ingreso esta fuera del limite.\nPuede ingresar un numero hasta " + preguntas.size());
             alert.show();
-        } else{
+        } else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Por favor, piense en un animal");
             alert.show();
-            App.setRoot("PreguntasYRespuestas");  
+            App.setRoot("PreguntasYRespuestas");
         }
     }
 
