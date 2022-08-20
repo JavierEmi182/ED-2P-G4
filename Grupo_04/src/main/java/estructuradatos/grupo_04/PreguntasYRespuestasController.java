@@ -117,20 +117,16 @@ public class PreguntasYRespuestasController implements Initializable {
            preguntas.setText("Estas pensando en un "+ arbol.getRootContent());
         }else if (ArbolData.esPregunta(guia.getRootContent())){
             String respuesta="";
-            System.out.println(arbol.listaHojas().size());
-            for(String respuestas : arbol.listaHojas()){
+            for(String respuestas : arbol.getHojas()){
                  respuesta+=respuestas+", ";
             }
             if(arbol.listaHojas().size()==1){
                 preguntas.setText("Estas pensando en un "+ respuesta);
             }else{
-                for(String respuestas : arbol.listaHojas()){
-                    System.out.println(respuestas);
-                }
                 preguntas.setText("Podrias estar pensando en estos animales"+respuesta);
             }
         }
-     }
+    }
        
    }
    

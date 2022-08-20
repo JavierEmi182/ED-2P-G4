@@ -178,7 +178,24 @@ public class BinaryTree<E> {
         return hojas;
     }
     
-    
+    public LinkedList<E> getHojas(){
+        LinkedList<E> hojas = new LinkedList<>();
+        if(root== null){
+            return hojas;
+        }
+        if(root.getLeft()==null && root.getRight()==null){
+            hojas.add(root.getContent());
+        }
+        if(root.getLeft()!=null){
+            root.getLeft().getHojas();
+        }
+        if(root.getRight()!=null){
+            root.getRight().getHojas();
+        }
+        return hojas;
+        
+
+    }
     public boolean recursiveSearch(E content, Comparator<E> cmp) {
 
         boolean result =false;
