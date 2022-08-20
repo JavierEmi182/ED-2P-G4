@@ -33,7 +33,7 @@ public class PreguntasYRespuestasController implements Initializable {
     private TextArea preguntas;
     private  BinaryTree<String> arbol= PrimaryController.arbolFinal;
     private int PreguntasHechas=0;
-    private int PreguntasUsuario=2;
+    private int PreguntasUsuario=VentanaRandomController.nMaximo;
     @FXML
     private Button RespuestaSi;
     @FXML
