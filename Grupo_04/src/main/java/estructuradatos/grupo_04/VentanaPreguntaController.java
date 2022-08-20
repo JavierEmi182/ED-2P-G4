@@ -5,11 +5,14 @@
  */
 package estructuradatos.grupo_04;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -29,6 +32,22 @@ public class VentanaPreguntaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+       /* String msg = "";
+        if(FileChooserController.preguntas.isEmpty()){
+            msg = "No se encontraron preguntas en este archivo";
+        }
+        if(FileChooserController.respuestas.isEmpty()){
+            msg = msg + "Este archivo se encuentra vacio.";
+        }
+        
+        Alert alert = new Alert(Alert.AlertType.ERROR, msg + "Vuelva a cargar el(los) archivo(s)");
+        alert.show();*/
     }    
+
+    @FXML
+    private void botonSi(MouseEvent event) throws IOException {
+        App.setRoot("Ventana Random");  
+    }
+    
     
 }
