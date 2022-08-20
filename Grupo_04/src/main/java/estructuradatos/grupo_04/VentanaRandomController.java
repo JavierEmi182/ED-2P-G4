@@ -44,7 +44,7 @@ public class VentanaRandomController implements Initializable {
     private void iniciarPartida(MouseEvent event) throws IOException {
 
         ArrayList<String> preguntas = FileChooserController.preguntas;
-        int nMaximo = Integer.parseInt(lblMaximo.getText());
+        nMaximo = Integer.parseInt(lblMaximo.getText());
 
         if (nMaximo > preguntas.size()) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "El numero que ingreso esta fuera del limite.\nPuede ingresar un numero hasta " + preguntas.size());

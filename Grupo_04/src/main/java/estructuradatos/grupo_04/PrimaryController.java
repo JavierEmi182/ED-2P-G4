@@ -45,7 +45,7 @@ public class PrimaryController implements Initializable {
     
     @FXML
     private void switchToSecondary() throws IOException {
-        App.setRoot("PreguntasYRespuestas");
+        App.setRoot("VentanaRandom");
     }
 
     @FXML

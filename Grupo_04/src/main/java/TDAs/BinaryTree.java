@@ -183,14 +183,12 @@ public class BinaryTree<E> {
         if(root== null){
             return hojas;
         }
-        if(root.getLeft()==null && root.getRight()==null){
+        else if(root.getLeft()==null && root.getRight()==null){
             hojas.add(root.getContent());
-        }
-        if(root.getLeft()!=null){
-            root.getLeft().getHojas();
-        }
-        if(root.getRight()!=null){
-            root.getRight().getHojas();
+        }else{
+            hojas.addAll(root.getLeft().getHojas());
+            hojas.addAll(root.getRight().getHojas());
+           
         }
         return hojas;
         

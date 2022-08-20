@@ -44,6 +44,7 @@ public class PreguntasYRespuestasController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        System.out.println(PreguntasUsuario);
         if (PreguntasHechas != PreguntasUsuario) {
             preguntar();
         } else {
