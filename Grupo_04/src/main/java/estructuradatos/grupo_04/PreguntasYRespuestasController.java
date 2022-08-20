@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author lolaguaman
+ * @author jeremy
  */
 public class PreguntasYRespuestasController implements Initializable {
 
@@ -33,22 +33,18 @@ public class PreguntasYRespuestasController implements Initializable {
     private TextArea preguntas;
     private  BinaryTree<String> arbol= PrimaryController.arbolFinal;
     private int PreguntasHechas=0;
-    private int PreguntasUsuario=3;
+    private int PreguntasUsuario=2;
     @FXML
     private Button RespuestaSi;
     @FXML
     private Button RespuestaNo;
-    @FXML
-    private Button botonFirstTime;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        RespuestaNo.setVisible(false);
-        RespuestaSi.setVisible(false);
-        preguntas.setText("POR FAVOR PIENSE EN UN ANIMAL");
+        preguntar();
 
     }    
 
@@ -58,6 +54,7 @@ public class PreguntasYRespuestasController implements Initializable {
         if(PreguntasHechas!=PreguntasUsuario){
             preguntar();
         }else{
+            darRespuesta(this.arbol);
             RespuestaSi.setVisible(false);
             RespuestaSi.setDisable(true);
             RespuestaNo.setVisible(false);
@@ -71,6 +68,7 @@ public class PreguntasYRespuestasController implements Initializable {
         if(PreguntasHechas!=PreguntasUsuario){
             preguntar();
         }else{
+            darRespuesta(this.arbol);
             RespuestaNo.setVisible(false);
             RespuestaNo.setDisable(true);
             RespuestaSi.setVisible(false);
@@ -80,6 +78,8 @@ public class PreguntasYRespuestasController implements Initializable {
 
     @FXML
     private void RegresarPestania(ActionEvent event) {
+        this.PreguntasHechas=0;
+        this.arbol=null;
         try {
             App.setRoot("primary");
         } catch (IOException ex) {
@@ -89,53 +89,69 @@ public class PreguntasYRespuestasController implements Initializable {
     
    
 
-    @FXML
-    private void PensarAnimal(ActionEvent event) {
-        botonFirstTime.setVisible(false);
-        botonFirstTime.setDisable(true);
-        RespuestaSi.setVisible(true);
-        RespuestaNo.setVisible(true);
-        preguntas.setText(arbol.getRootContent());
-    }
-
     private void respuestaSi(){
         PreguntasHechas++;
-        arbol=arbol.getLeft();
-        if(arbol==null){
-            preguntas.setText("Lo sentimos, pero no tenemos un animal que cumpla esa descripcion");
-        }
-        if((PreguntasHechas==PreguntasUsuario)&& (arbol!=null)){
-            String respuesta="";
-            for(String respuestas : arbol.listaHojas()){
-                respuesta+=respuestas+", ";
-            }
-            preguntas.setText("Podrias estar pensando en estos animales"+respuesta);
-        }    
+        this.arbol=this.arbol.getLeft();
     }
     
     
     private void respuestaNo(){
         PreguntasHechas++;
-        arbol=arbol.getRight();
-        if(arbol==null){
-            preguntas.setText("Lo sentimos, pero no tenemos un animal que cumpla esa descripcion");
-        }
-        if((PreguntasHechas==PreguntasUsuario)&& (arbol!=null)){
-            String respuesta="";
-            for(String respuestas : arbol.listaHojas()){
-                respuesta+=respuestas+", ";
-            }
-            preguntas.setText("Podrias estar pensando en estos animales"+respuesta);
-        }    
+        this.arbol=this.arbol.getRight();
     }
                 
    private void preguntar(){
-       if(ArbolData.esPregunta(arbol.getRootContent())){
-           preguntas.setText(arbol.getRootContent());
-       }else{
-           preguntas.setText("Estas pensando en un "+ arbol.getRootContent());
+       if(ArbolData.esPregunta(this.arbol.getRootContent())){
+           preguntas.setText(this.arbol.getRootContent());
        }
+       
+//       else{
+//           preguntas.setText("Estas pensando en un "+ arbol.getRootContent());
+//       }
    }
+   
+    private void darRespuesta(BinaryTree<String> guia){
+        if(guia == null){
+           preguntas.setText("Lo sentimos, pero no tenemos un animal que cumpla esa descripcion");
+        }else if (!ArbolData.esPregunta(guia.getRootContent())){
+           preguntas.setText("Estas pensando en un "+ arbol.getRootContent());
+        }else if (ArbolData.esPregunta(guia.getRootContent())){
+            String respuesta="";
+            System.out.println(arbol.listaHojas().size());
+            for(String respuestas : arbol.listaHojas()){
+                 respuesta+=respuestas+", ";
+            }
+            if(arbol.listaHojas().size()==1){
+                preguntas.setText("Estas pensando en un "+ respuesta);
+            }else{
+                for(String respuestas : arbol.listaHojas()){
+                    System.out.println(respuestas);
+                }
+                preguntas.setText("Podrias estar pensando en estos animales"+respuesta);
+            }
+        }
+     }
+       
+   }
+   
+   
+//      private void respuestaNo(){
+//        PreguntasHechas++;
+//        this.arbol=this.arbol.getRight();
+//        if(arbol==null){
+//            preguntas.setText("Lo sentimos, pero no tenemos un animal que cumpla esa descripcion");
+//        }
+//        if((PreguntasHechas==PreguntasUsuario)&& (!ArbolData.esPregunta(arbol.getRootContent()))){
+//           preguntas.setText("Estas pensando en un "+ arbol.getRootContent());
+//        }
+//        if((PreguntasHechas==PreguntasUsuario)&& (arbol!=null)){
+//            String respuesta="";
+//            for(String respuestas : arbol.listaHojas()){
+//                respuesta+=respuestas+", ";
+//            }
+//            preguntas.setText("Podrias estar pensando en estos animales"+respuesta);
+//        }    
+  
    
 //    private void CambiarPregunta(){ 
 //        int PreguntasHechas=0;
@@ -187,4 +203,4 @@ public class PreguntasYRespuestasController implements Initializable {
 //            }
 //        }
 //    }
-}
+

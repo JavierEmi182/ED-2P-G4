@@ -143,25 +143,36 @@ public class BinaryTree<E> {
         if(this.getRootContent()==null){
             //lista vacia
             return hojas;
-        }else{
-            //compruebo izquierda
-            if(this.getLeft()!=null){
-                this.getLeft().listaHojas();
-            }else{
-                //cuando este en hoja entro aqui
-                if(this.getLeft()==null&&this.getRight()==null){
-                    hojas.add(this.getRootContent());
-                }
-            }
-            //compruebo derecha
-            if(this.getRight()!=null){
-                this.getRight().listaHojas();
-            }else{
-                if(this.getLeft()==null&&this.getRight()==null){
-                    hojas.add(this.getRootContent());
-                }
-            }
+        }else if(this.getRootContent()!= null && this.getLeft()==null && this.getRight()==null){
+            //si la raiz ya es hoja
+            hojas.add(this.getRootContent());
+            
         }
+        if(this.getLeft()!=null){
+            this.getLeft().listaHojas();
+        }
+        if(this.getRight()!=null){
+            this.getRight().listaHojas();
+        }
+//        else{
+//            //compruebo izquierda
+//            if(this.getLeft()!=null){
+//                this.getLeft().listaHojas();
+//            }else{
+//                //cuando este en hoja entro aqui
+//                if(this.getLeft()==null&&this.getRight()==null){
+//                    hojas.add(this.getRootContent());
+//                }
+//            }
+//            //compruebo derecha
+//            if(this.getRight()!=null){
+//                this.getRight().listaHojas();
+//            }else{
+//                if(this.getLeft()==null&&this.getRight()==null){
+//                    hojas.add(this.getRootContent());
+//                }
+//            }
+//        }
         
         
         return hojas;

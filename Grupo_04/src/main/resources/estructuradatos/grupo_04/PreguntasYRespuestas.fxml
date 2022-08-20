@@ -10,6 +10,5 @@
       <Button fx:id="RespuestaSi" layoutX="145.0" layoutY="309.0" mnemonicParsing="false" onAction="#RespuestaSi" text="SI" />
       <Button fx:id="RespuestaNo" layoutX="400.0" layoutY="310.0" mnemonicParsing="false" onAction="#RespuestaNo" text="NO" />
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#RegresarPestania" text="Volver" />
-      <Button fx:id="botonFirstTime" layoutX="512.0" layoutY="116.0" mnemonicParsing="false" onAction="#PensarAnimal" text="LISTO" />
    </children>
 </AnchorPane>
