@@ -44,7 +44,6 @@ public class PreguntasYRespuestasController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println(PreguntasUsuario);
         if (PreguntasHechas != PreguntasUsuario) {
             preguntar();
         } else {
@@ -123,12 +122,12 @@ public class PreguntasYRespuestasController implements Initializable {
             preguntas.setText("Estas pensando en un " + arbol.getRootContent());
         } else if (ArbolData.esPregunta(guia.getRootContent())) {
             String respuesta = "";
-            for (String respuestas : arbol.getHojas()) {
-                respuesta += respuestas + ", ";
-            }
-            if (arbol.listaHojas().size() == 1) {
-                preguntas.setText("Estas pensando en un " + respuesta);
-            } else {
+            if(arbol.getHojas().size()==1){
+                preguntas.setText("Estas pensando en un " + arbol.getHojas().getFirst());
+            }else{
+                for (String respuestas : arbol.getHojas()) {
+                    respuesta += respuestas + ", ";
+                }
                 preguntas.setText("Podrias estar pensando en estos animales" + respuesta);
             }
         }
