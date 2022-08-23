@@ -31,12 +31,12 @@ public class PrimaryController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         System.out.println("Entre initialize");
         if(filePredeterminado){
-            System.out.println("bandera true");
+            //System.out.println("bandera true");
             lbPreguntastxt.setText("");
             lbRespuestastxt.setText("");
             primaryButton.setVisible(false);
         }else{
-            System.out.println("bandera false");
+            //System.out.println("bandera false");
             lbPreguntastxt.setText(FileChooserController.nomPreguntas);
             lbRespuestastxt.setText(FileChooserController.nomRespuestas);
             primaryButton.setVisible(true);
