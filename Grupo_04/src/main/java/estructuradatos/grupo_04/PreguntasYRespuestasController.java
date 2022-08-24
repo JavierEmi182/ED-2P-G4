@@ -8,6 +8,7 @@ import Data.ArbolData;
 import TDAs.BinaryTree;
 import java.io.IOException;
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,6 +39,8 @@ public class PreguntasYRespuestasController implements Initializable {
     private Button RespuestaSi;
     @FXML
     private Button RespuestaNo;
+    @FXML
+    private Button btn_nose;
 
     /**
      * Initializes the controller class.
@@ -52,6 +55,8 @@ public class PreguntasYRespuestasController implements Initializable {
             RespuestaSi.setDisable(true);
             RespuestaNo.setVisible(false);
             RespuestaNo.setDisable(true);
+            btn_nose.setVisible(false);
+            btn_nose.setDisable(true);
         }
 
     }
@@ -67,6 +72,8 @@ public class PreguntasYRespuestasController implements Initializable {
             RespuestaSi.setDisable(true);
             RespuestaNo.setVisible(false);
             RespuestaNo.setDisable(true);
+            btn_nose.setVisible(false);
+            btn_nose.setDisable(true);
         }
     }
 
@@ -81,6 +88,8 @@ public class PreguntasYRespuestasController implements Initializable {
             RespuestaNo.setDisable(true);
             RespuestaSi.setVisible(false);
             RespuestaSi.setDisable(true);
+            btn_nose.setVisible(false);
+            btn_nose.setDisable(true);
         }
     }
 
@@ -127,6 +136,30 @@ public class PreguntasYRespuestasController implements Initializable {
                 preguntas.setText("Podrias estar pensando en estos animales: " + respuesta.substring(0, respuesta.length()-2));
             }
         }
+    }
+
+    @FXML
+    private void RespuestaNoSabe(ActionEvent event) {
+        LinkedList<String> posRespuestas= arbol.getHojas();
+        if(posRespuestas==null){
+            preguntas.setText("Lo siento no puedo adivinar tu animal");
+        }else if(posRespuestas.size()==0){
+            preguntas.setText("No hay un animal que cumpla con sus respuestas dadas");
+        }else if(posRespuestas.size()==1){
+            preguntas.setText("Estas pensando en un "+ posRespuestas.getFirst());
+        }else{
+            String respuesta = "";
+            for (String respuestas : posRespuestas) {
+                if(ArbolData.esPregunta(respuesta)){
+                    continue;
+                }
+               respuesta += respuestas + ", ";
+            }
+            preguntas.setText("Podrias estar pensando en estos animales: " + respuesta.substring(0, respuesta.length()-2));
+        }
+        btn_nose.setVisible(false);
+        btn_nose.setDisable(true);
+        
     }
 
 }
