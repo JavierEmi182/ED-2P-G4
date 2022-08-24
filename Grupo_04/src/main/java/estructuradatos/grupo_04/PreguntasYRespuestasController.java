@@ -109,10 +109,6 @@ public class PreguntasYRespuestasController implements Initializable {
         if (ArbolData.esPregunta(this.arbol.getRootContent())) {
             preguntas.setText(this.arbol.getRootContent());
         }
-
-//       else{
-//           preguntas.setText("Estas pensando en un "+ arbol.getRootContent());
-//       }
     }
 
     private void darRespuesta(BinaryTree<String> guia) {
@@ -128,77 +124,11 @@ public class PreguntasYRespuestasController implements Initializable {
                 for (String respuestas : arbol.getHojas()) {
                     respuesta += respuestas + ", ";
                 }
-                preguntas.setText("Podrias estar pensando en estos animales" + respuesta);
+                preguntas.setText("Podrias estar pensando en estos animales: " + respuesta.substring(0, respuesta.length()-2));
             }
         }
     }
 
 }
 
-//      private void respuestaNo(){
-//        PreguntasHechas++;
-//        this.arbol=this.arbol.getRight();
-//        if(arbol==null){
-//            preguntas.setText("Lo sentimos, pero no tenemos un animal que cumpla esa descripcion");
-//        }
-//        if((PreguntasHechas==PreguntasUsuario)&& (!ArbolData.esPregunta(arbol.getRootContent()))){
-//           preguntas.setText("Estas pensando en un "+ arbol.getRootContent());
-//        }
-//        if((PreguntasHechas==PreguntasUsuario)&& (arbol!=null)){
-//            String respuesta="";
-//            for(String respuestas : arbol.listaHojas()){
-//                respuesta+=respuestas+", ";
-//            }
-//            preguntas.setText("Podrias estar pensando en estos animales"+respuesta);
-//        }    
-//    private void CambiarPregunta(){ 
-//        int PreguntasHechas=0;
-//        int PreguntasUsuario=2;
-//        while(PreguntasHechas<=PreguntasUsuario){
-//            if(ArbolData.esPregunta(arbol.getRootContent())){
-//                System.out.println(arbol.getRootContent());
-//                //preguntas.setText(arbol.getRootContent());
-//                if(controladorRespuestas.equals("SI")){
-//                    PreguntasHechas++;
-//                    arbol=arbol.getLeft();
-//                    if(arbol==null){
-//                        System.out.println("Lo sentimos, pero no tenemos un animal que cumpla esa descripcion");
-//                        break;
-//                    }
-//                    if((PreguntasHechas==PreguntasUsuario)&& (arbol!=null)){
-//                        String respuesta="";
-//                        for(String respuestas : arbol.listaHojas()){
-//                            respuesta+=respuestas+", ";
-//                        }
-//                        //preguntas.setText("Podrias estar pensando en estos animales"+respuesta);
-//                        System.out.println(respuesta);
-//                        break;
-//                    }
-//                }else if(controladorRespuestas.equals("NO")){
-//                    PreguntasHechas++;
-//                    arbol=arbol.getRight();
-//                    if(arbol==null){
-//                        System.out.println("Lo sentimos, pero no tenemos un animal que cumpla esa descripcion");
-//                        break;
-//                    }
-//                    if((PreguntasHechas==PreguntasUsuario)&& (arbol!=null)){
-//                        String respuesta="";
-//                        for(String respuestas : arbol.listaHojas()){
-//                            respuesta+=respuestas+", ";
-//                        }
-//                        //preguntas.setText("Podrias estar pensando en estos animales"+respuesta);
-//                        System.out.println(respuesta);
-//                        break;
-//                    }
-//                }else if(controladorRespuestas.equals("")){
-//                    System.out.println("aiuda");
-//                    break;
-//                }
-//            }else{
-//                //preguntas.setText("Estas pensando en un "+ arbol.getRootContent());
-//                System.out.println(arbol.getRootContent());
-//                break;
-//            }
-//        }
-//    }
 
