@@ -50,7 +50,7 @@ public class PreguntasYRespuestasController implements Initializable {
         if (PreguntasHechas != PreguntasUsuario) {
             preguntar();
         } else {
-            preguntas.setText("No puedo adivinar el animal.");
+            darRespuesta(this.arbol);
             RespuestaSi.setVisible(false);
             RespuestaSi.setDisable(true);
             RespuestaNo.setVisible(false);
@@ -127,10 +127,10 @@ public class PreguntasYRespuestasController implements Initializable {
             preguntas.setText("Estas pensando en un " + arbol.getRootContent());
         } else if (ArbolData.esPregunta(guia.getRootContent())) {
             String respuesta = "";
-            if(arbol.getHojas().size()==1){
-                preguntas.setText("Estas pensando en un " + arbol.getHojas().getFirst());
+            if(ArbolData.getRespuestas(arbol).size()==1){
+                preguntas.setText("Estas pensando en un " + ArbolData.getRespuestas(arbol).getFirst());
             }else{
-                for (String respuestas : arbol.getHojas()) {
+                for (String respuestas : ArbolData.getRespuestas(arbol)) {
                     respuesta += respuestas + ", ";
                 }
                 preguntas.setText("Podrias estar pensando en estos animales: " + respuesta.substring(0, respuesta.length()-2));
@@ -149,16 +149,17 @@ public class PreguntasYRespuestasController implements Initializable {
             preguntas.setText("Estas pensando en un "+ posRespuestas.getFirst());
         }else{
             String respuesta = "";
-            for (String respuestas : posRespuestas) {
-                if(ArbolData.esPregunta(respuesta)){
-                    continue;
-                }
+            for (String respuestas : ArbolData.getRespuestas(arbol)) {
                respuesta += respuestas + ", ";
             }
             preguntas.setText("Podrias estar pensando en estos animales: " + respuesta.substring(0, respuesta.length()-2));
         }
         btn_nose.setVisible(false);
         btn_nose.setDisable(true);
+        RespuestaNo.setVisible(false);
+        RespuestaNo.setDisable(true);
+        RespuestaSi.setVisible(false);
+        RespuestaSi.setDisable(true);
         
     }
 

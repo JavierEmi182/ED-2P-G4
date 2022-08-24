@@ -162,13 +162,15 @@ public class ArbolData {
         return s.startsWith("¿") && s.endsWith("?");
     }
     
-    public static ArrayList<String> getRespuestas(BinaryTree<String> arbol){
-        ArrayList<String> respuestas = new ArrayList<>();
-        //LinkedList = arbol.listaHojas();
-        /// manejar la linked
-        
-        // String s= " p[0] \n p[1]
-        
+    public static LinkedList<String> getRespuestas(BinaryTree<String> arbol){
+        LinkedList<String> hojas = arbol.getHojas();
+        LinkedList<String> respuestas= new LinkedList<>();
+        for(String s: hojas){
+            if(esPregunta(s)){
+                continue;
+            }
+            respuestas.add(s);
+        }
         return respuestas;
     }
 
