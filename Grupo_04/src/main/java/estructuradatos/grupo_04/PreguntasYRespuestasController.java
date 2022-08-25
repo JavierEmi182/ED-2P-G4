@@ -51,12 +51,7 @@ public class PreguntasYRespuestasController implements Initializable {
             preguntar();
         } else {
             darRespuesta(this.arbol);
-            RespuestaSi.setVisible(false);
-            RespuestaSi.setDisable(true);
-            RespuestaNo.setVisible(false);
-            RespuestaNo.setDisable(true);
-            btn_nose.setVisible(false);
-            btn_nose.setDisable(true);
+            disableButtons();
         }
 
     }
@@ -68,12 +63,7 @@ public class PreguntasYRespuestasController implements Initializable {
             preguntar();
         } else {
             darRespuesta(this.arbol);
-            RespuestaSi.setVisible(false);
-            RespuestaSi.setDisable(true);
-            RespuestaNo.setVisible(false);
-            RespuestaNo.setDisable(true);
-            btn_nose.setVisible(false);
-            btn_nose.setDisable(true);
+            disableButtons();
         }
     }
 
@@ -84,12 +74,7 @@ public class PreguntasYRespuestasController implements Initializable {
             preguntar();
         } else {
             darRespuesta(this.arbol);
-            RespuestaNo.setVisible(false);
-            RespuestaNo.setDisable(true);
-            RespuestaSi.setVisible(false);
-            RespuestaSi.setDisable(true);
-            btn_nose.setVisible(false);
-            btn_nose.setDisable(true);
+            disableButtons();
         }
     }
 
@@ -98,7 +83,7 @@ public class PreguntasYRespuestasController implements Initializable {
         this.PreguntasHechas = 0;
         this.arbol = null;
         try {
-            App.setRoot("primary");
+            App.setRoot("VentanaRandom");
         } catch (IOException ex) {
             Logger.getLogger(PreguntasYRespuestasController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -127,7 +112,9 @@ public class PreguntasYRespuestasController implements Initializable {
             preguntas.setText("Estas pensando en un " + arbol.getRootContent());
         } else if (ArbolData.esPregunta(guia.getRootContent())) {
             String respuesta = "";
-            if(ArbolData.getRespuestas(arbol).size()==1){
+            if(ArbolData.getRespuestas(arbol).isEmpty()){
+                preguntas.setText("Lo sentimos, pero no tenemos un animal que cumpla esa descripcion");
+            }else if(ArbolData.getRespuestas(arbol).size()==1){
                 preguntas.setText("Estas pensando en un " + ArbolData.getRespuestas(arbol).getFirst());
             }else{
                 for (String respuestas : ArbolData.getRespuestas(arbol)) {
@@ -140,27 +127,17 @@ public class PreguntasYRespuestasController implements Initializable {
 
     @FXML
     private void RespuestaNoSabe(ActionEvent event) {
-        LinkedList<String> posRespuestas= arbol.getHojas();
-        if(posRespuestas==null){
-            preguntas.setText("Lo siento no puedo adivinar tu animal");
-        }else if(posRespuestas.size()==0){
-            preguntas.setText("No hay un animal que cumpla con sus respuestas dadas");
-        }else if(posRespuestas.size()==1){
-            preguntas.setText("Estas pensando en un "+ posRespuestas.getFirst());
-        }else{
-            String respuesta = "";
-            for (String respuestas : ArbolData.getRespuestas(arbol)) {
-               respuesta += respuestas + ", ";
-            }
-            preguntas.setText("Podrias estar pensando en estos animales: " + respuesta.substring(0, respuesta.length()-2));
-        }
+        darRespuesta(this.arbol);
+        disableButtons();
+    }
+    
+    private void disableButtons(){
         btn_nose.setVisible(false);
         btn_nose.setDisable(true);
         RespuestaNo.setVisible(false);
         RespuestaNo.setDisable(true);
         RespuestaSi.setVisible(false);
         RespuestaSi.setDisable(true);
-        
     }
 
 }

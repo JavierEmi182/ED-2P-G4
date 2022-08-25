@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -53,6 +56,15 @@ public class VentanaRandomController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Por favor, piense en un animal");
             alert.show();
             App.setRoot("PreguntasYRespuestas");
+        }
+    }
+
+    @FXML
+    private void regresar(ActionEvent event) {
+        try {
+            App.setRoot("primary");
+        } catch (IOException ex) {
+            Logger.getLogger(VentanaRandomController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

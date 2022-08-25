@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="estructuradatos.grupo_04.VentanaRandomController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="estructuradatos.grupo_04.VentanaRandomController">
    <children>
       <VBox alignment="BOTTOM_CENTER" layoutX="2.0" prefHeight="189.0" prefWidth="600.0">
          <children>
@@ -40,9 +40,10 @@
          </children>
       </VBox>
       <VBox alignment="CENTER_RIGHT" layoutX="-1.0" layoutY="338.0" prefHeight="61.0" prefWidth="602.0" />
-      <VBox alignment="CENTER" layoutY="240.0" prefHeight="101.0" prefWidth="614.0">
+      <VBox alignment="CENTER" layoutY="240.0" prefHeight="101.0" prefWidth="614.0" spacing="20.0">
          <children>
             <Button fx:id="lblPartida" mnemonicParsing="false" onMouseClicked="#iniciarPartida" text="¡Es hora de empezar!" />
+            <Button mnemonicParsing="false" onAction="#regresar" text="Volver" />
          </children>
       </VBox>
    </children>
