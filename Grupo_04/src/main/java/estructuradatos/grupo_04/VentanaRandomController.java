@@ -52,7 +52,10 @@ public class VentanaRandomController implements Initializable {
         if (nMaximo > preguntas.size()) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "El numero que ingreso esta fuera del limite.\nPuede ingresar un numero hasta " + preguntas.size());
             alert.show();
-        } else {
+        } else if(nMaximo<0){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "El numero que ingreso no puede ser negativo.\nPuede ingresar un numero hasta " + preguntas.size());
+            alert.show();
+        }else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Por favor, piense en un animal");
             alert.show();
             App.setRoot("PreguntasYRespuestas");
