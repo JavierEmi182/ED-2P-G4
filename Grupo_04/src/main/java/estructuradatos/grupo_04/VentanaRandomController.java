@@ -47,18 +47,24 @@ public class VentanaRandomController implements Initializable {
     private void iniciarPartida(MouseEvent event) throws IOException {
 
         ArrayList<String> preguntas = FileChooserController.preguntas;
-        nMaximo = Integer.parseInt(lblMaximo.getText());
+        //nMaximo = Integer.parseInt(lblMaximo.getText());
+        try {
+            nMaximo = Integer.parseInt(lblMaximo.getText());
+            if (nMaximo > preguntas.size()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "El numero que ingreso esta fuera del limite.\nPuede ingresar un numero hasta " + preguntas.size());
+                alert.show();
+            } else if (nMaximo < 0) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "El numero que ingreso no puede ser negativo.\nPuede ingresar un numero hasta " + preguntas.size());
+                alert.show();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Por favor, piense en un animal");
+                alert.show();
+                App.setRoot("PreguntasYRespuestas");
+            }
 
-        if (nMaximo > preguntas.size()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "El numero que ingreso esta fuera del limite.\nPuede ingresar un numero hasta " + preguntas.size());
-            alert.show();
-        } else if(nMaximo<0){
-            Alert alert = new Alert(Alert.AlertType.ERROR, "El numero que ingreso no puede ser negativo.\nPuede ingresar un numero hasta " + preguntas.size());
-            alert.show();
-        }else {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Por favor, piense en un animal");
-            alert.show();
-            App.setRoot("PreguntasYRespuestas");
+        } catch (NumberFormatException e) {
+              Alert alert = new Alert(Alert.AlertType.ERROR, "Ingrese un número.\nPuede ingresar un numero hasta " + preguntas.size());
+              alert.show();
         }
     }
 

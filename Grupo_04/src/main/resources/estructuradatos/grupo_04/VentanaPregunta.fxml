@@ -27,12 +27,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="buttonSi" mnemonicParsing="false" onMouseClicked="#botonSi" text="Si">
+                  <Button fx:id="buttonSi" mnemonicParsing="false" onMouseClicked="#botonSi" text="SI">
                      <GridPane.margin>
                         <Insets right="50.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button fx:id="buttonNo" mnemonicParsing="false" onMouseClicked="#botonNo" text="No" GridPane.columnIndex="1">
+                  <Button fx:id="buttonNo" mnemonicParsing="false" onMouseClicked="#botonNo" text="NO" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="50.0" />
                      </GridPane.margin>

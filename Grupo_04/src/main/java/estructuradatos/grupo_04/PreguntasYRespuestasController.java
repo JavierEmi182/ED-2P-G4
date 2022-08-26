@@ -107,13 +107,13 @@ public class PreguntasYRespuestasController implements Initializable {
 
     private void darRespuesta(BinaryTree<String> guia) {
         if (guia == null) {
-            preguntas.setText("Lo sentimos, pero no tenemos un animal que cumpla esa descripcion");
+            preguntas.setText("Lo sentimos, pero no tenemos un animal que cumpla esa descripción");
         } else if (!ArbolData.esPregunta(guia.getRootContent())) {
             preguntas.setText("Estas pensando en un " + arbol.getRootContent());
         } else if (ArbolData.esPregunta(guia.getRootContent())) {
             String respuesta = "";
             if(ArbolData.getRespuestas(arbol).isEmpty()){
-                preguntas.setText("Lo sentimos, pero no tenemos un animal que cumpla esa descripcion");
+                preguntas.setText("Lo sentimos, pero no tenemos un animal que cumpla esa descripción");
             }else if(ArbolData.getRespuestas(arbol).size()==1){
                 preguntas.setText("Estas pensando en un " + ArbolData.getRespuestas(arbol).getFirst());
             }else{
